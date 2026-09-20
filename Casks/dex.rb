@@ -33,5 +33,15 @@ cask "dex" do
 
   binary "dex"
 
+  caveats <<~EOS
+    Current macOS releases are not yet notarized. If Gatekeeper blocks dex,
+    remove the quarantine attribute from the Homebrew-installed binary:
+
+      xattr -d com.apple.quarantine "$(command -v dex)"
+
+    This bypasses Gatekeeper verification. Only use it with the official
+    dexchat/tap cask.
+  EOS
+
   # No zap stanza required
 end
